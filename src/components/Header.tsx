@@ -8,6 +8,7 @@ import {
   authorizedAction,
 } from '../store/userSlice';
 import { authorize } from '../api/authorize';
+import { NavLink } from 'react-router-dom';
 
 export function Header() {
   const user = useSelector((state: RootState) => state.user.user);
@@ -28,6 +29,26 @@ export function Header() {
       className="flex justify-between items-center
     border-b-2 border-gray-100 py-6"
     >
+      <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div className="hidden sm:ml-6 sm:block">
+          <div className="flex space-x-4">
+            <NavLink
+              to="/"
+              className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+              aria-current="page"
+            >
+              Dashboard
+            </NavLink>
+            <NavLink
+              to="/posts"
+              className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+            >
+              Posts
+            </NavLink>
+          </div>
+        </div>
+      </div>
+
       {user ? (
         <span className="ml-auto font-bold">{user.name} has signed in</span>
       ) : (
