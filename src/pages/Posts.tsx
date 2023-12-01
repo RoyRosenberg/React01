@@ -3,13 +3,17 @@ import { RootState } from '../store/store';
 import { fetchPostsAction } from '../store/postSlice';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
+import { useEffect } from 'react';
 
 //To Fix the Typescript error
 type Dispatcher = ThunkDispatch<RootState, undefined, AnyAction>;
 
-export function Posts() {
+export default function Posts() {
   const postList = useSelector((state: RootState) => state.post.list);
   const loading = useSelector((state: RootState) => state.post.loading);
+  useEffect(() => {
+    FetchClick();
+  }, []);
   const dispatch = useDispatch<Dispatcher>();
   function FetchClick() {
     dispatch(fetchPostsAction());
@@ -37,8 +41,30 @@ export function Posts() {
             ></path>
           </svg>
         )}
-        Fetch
+        Refresh
       </button>
+      <table className="table-fixed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          {postList.map((post, index) => {
+            return (
+              <tr key={post.id}>
+                <td>{index}</td>
+                <td>{post.id}</td>
+                <td>{post.title}</td>
+                <td>{post.body}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </>
   );
 }

@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import { Main } from './Main';
-import { Posts } from './pages/Posts';
+import { lazy, Suspense } from 'react';
+
+const PostPage = lazy(() => import('./pages/Posts'));
 
 const router = createBrowserRouter([
   {
@@ -15,7 +17,13 @@ const router = createBrowserRouter([
       },
       {
         path: '/posts',
-        element: <Posts />,
+        element: (
+          <Suspense
+            fallback={<div className="text-center p-5 text-xl text-slate-00">Loading...</div>}
+          >
+            <PostPage />
+          </Suspense>
+        ),
       },
     ],
   },
