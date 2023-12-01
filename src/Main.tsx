@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from './store/store';
 
 export function Main() {
-  const user = useSelector((state: RootState) => state.user.user);
+  const user = useSelector((state: RootState) => state.user.currentUser);
   return (
     <main className="py-8">
       <h1

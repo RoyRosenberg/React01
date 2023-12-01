@@ -11,7 +11,7 @@ import { authorize } from '../api/authorize';
 import { NavLink } from 'react-router-dom';
 
 export function Header() {
-  const user = useSelector((state: RootState) => state.user.user);
+  const user = useSelector((state: RootState) => state.user.currentUser);
   const loading = useSelector((state: RootState) => state.user.loading);
   const dispatch = useDispatch();
   async function handleSignInClick() {

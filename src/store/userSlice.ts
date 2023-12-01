@@ -3,13 +3,15 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../api/authenticate';
 
 type State = {
-  user: undefined | User;
+  list: User[];
+  currentUser: undefined | User;
   permissions: undefined | string[];
   loading: boolean;
 };
 
 const initialState: State = {
-  user: undefined,
+  list: [],
+  currentUser: undefined,
   permissions: undefined,
   loading: false,
 };
@@ -22,7 +24,7 @@ export const userSlice = createSlice({
       state.loading = true;
     },
     authenticatedAction: (state, action: PayloadAction<User | undefined>) => {
-      state.user = action.payload;
+      state.currentUser = action.payload;
       state.loading = false;
     },
     authorizeAction: (state) => {
