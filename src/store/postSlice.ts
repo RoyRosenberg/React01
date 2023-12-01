@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../api/authenticate';
-import { Post } from '../api/posts';
+import type { Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import { Post, fetchPosts } from '../api/posts';
+import { RootState } from './store';
 
 type State = {
   list: Post[];
@@ -17,7 +17,7 @@ export const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    fetchPostsAction: (state) => {
+    fetchPostsInternal: (state) => {
       state.loading = true;
     },
     fetchPostsSuccessAction: (state, action: PayloadAction<Post[]>) => {
@@ -31,6 +31,22 @@ export const postSlice = createSlice({
   },
 });
 
-export const { fetchPostsAction, fetchPostsSuccessAction, fetchPostsFailedAction } =
-  postSlice.actions;
+export function fetchPostsAction() {
+  return async (dispatch: Dispatch, getState: () => RootState) => {
+    dispatch(postSlice.actions.fetchPostsInternal());
+    const s = getState();
+    console.log('get post', s.post);
+    console.log('get user', s.user);
+
+    try {
+      const data = await fetchPosts();
+      dispatch(fetchPostsSuccessAction(data));
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      fetchPostsFailedAction();
+    }
+  };
+}
+
+export const { fetchPostsSuccessAction, fetchPostsFailedAction } = postSlice.actions;
 export default postSlice.reducer;
