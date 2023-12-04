@@ -4,6 +4,7 @@ import { fetchPostsAction } from '../store/postSlice';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //To Fix the Typescript error
 type Dispatcher = ThunkDispatch<RootState, undefined, AnyAction>;
@@ -49,7 +50,7 @@ export default function Posts() {
             <th>#</th>
             <th>Id</th>
             <th>Title</th>
-            <th>Body</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +60,9 @@ export default function Posts() {
                 <td>{index}</td>
                 <td>{post.id}</td>
                 <td>{post.title}</td>
-                <td>{post.body}</td>
+                <td>
+                  <Link to={`/post/${post.id}`}>View</Link>
+                </td>
               </tr>
             );
           })}
