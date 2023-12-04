@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
-import { fetchPostsAction } from '../store/postSlice';
+import { fetchPostsAction } from './postSlice';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { useEffect } from 'react';

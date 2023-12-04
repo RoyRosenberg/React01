@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
-import { Main } from './Main';
+import { Main } from './users/Users';
 import { lazy, Suspense } from 'react';
 
-const PostsPage = lazy(() => import('./pages/Posts'));
-const PostPage = lazy(() => import('./pages/Post'));
+const PostsPage = lazy(() => import('./posts/Posts'));
+const PostPage = lazy(() => import('./posts/Post'));
 
 const router = createBrowserRouter([
   {

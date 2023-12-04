@@ -6,7 +6,7 @@ import {
   authenticatedAction,
   authorizeAction,
   authorizedAction,
-} from '../store/userSlice';
+} from '../users/userSlice';
 import { authorize } from '../api/authorize';
 import { NavLink } from 'react-router-dom';
 
@@ -37,7 +37,7 @@ export function Header() {
               className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
               aria-current="page"
             >
-              Dashboard
+              Users
             </NavLink>
             <NavLink
               to="/posts"

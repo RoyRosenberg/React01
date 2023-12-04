@@ -3,7 +3,7 @@ import { RootState } from '../store/store';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostById } from '../store/postSlice';
+import { getPostById } from './postSlice';
 import { useParams } from 'react-router-dom';
 
 type Params = {

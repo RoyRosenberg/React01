@@ -1,7 +1,7 @@
 import './App.css';
 import { Provider } from 'react-redux';
 import { Header } from './components/Header';
-import { Main } from './Main';
+import { Main } from './users/Users';
 import { store } from './store/store';
 import { Outlet } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './userSlice';
-import postSlice from './postSlice';
+import userReducer from '../users/userSlice';
+import postSlice from '../posts/postSlice';
 import thunk from 'redux-thunk';
 
 export const store = configureStore({

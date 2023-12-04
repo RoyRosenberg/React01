@@ -1,7 +1,6 @@
-import { User } from './api/authenticate';
 import { Content } from './Content';
 import { useSelector } from 'react-redux';
-import { RootState } from './store/store';
+import { RootState } from '../store/store';
 
 export function Main() {
   const user = useSelector((state: RootState) => state.user.currentUser);

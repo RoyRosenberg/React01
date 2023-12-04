@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { ActionReducerMapBuilder, Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import type { ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit';
 import { Post, fetchPosts } from '../api/posts';
-import { RootState } from './store';
+import { RootState } from '../store/store';
 
 type State = {
   list: Post[];
@@ -36,7 +36,7 @@ export const postSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getPostById.fulfilled, (state, { payload }) => {
-      console.log('post found', payload);
+      // console.log('post found', payload);
       state.currentPost = payload as Post;
       state.loading = false;
     });
@@ -48,8 +48,8 @@ export const fetchPostsAction = createAsyncThunk(
   async (_, { dispatch, getState }) => {
     //dispatch(postSlice.actions.fetchPostsInternal());
     const s = getState() as RootState;
-    console.log('get post', s.post);
-    console.log('get user', s.user);
+    //console.log('get post', s.post);
+    //console.log('get user', s.user);
 
     try {
       const data = await fetchPosts();
